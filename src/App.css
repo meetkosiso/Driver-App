@@ -1,0 +1,112 @@
+.main-container {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sub-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.display-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+.display-item {
+  margin-right: 55px;
+}
+.charge-button-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.charge-button {
+  margin-right: 30px;
+  height: 50px;
+  width: 150px;
+  font-weight: 600;
+  border-radius: 15px;
+  color: white;
+  border: 0px;
+  background-color: brown;
+}
+.charge-button:hover {
+  background-color: rgb(201, 66, 66);
+}
+.charge-button:disabled {
+  background: rgb(214, 107, 107);
+}
+.welcome-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 150px;
+}
+.container-header {
+  display: flex;
+  width: 60%;
+  height: 100px;
+  margin-bottom: 90px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 2px solid rgb(201, 201, 199);
+}
+.right-header-item {
+  margin-left: 80%;
+  align-items: flex-end;
+}
+.header-item {
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-bottom-color: brown;
+  display: inline-block;
+  margin: 0 0 -2px 0;
+  padding: 22px 3px;
+  font-weight: 600;
+}
+#logout-button {
+  border: 0px;
+  background-color: white;
+}
+#logout-button:hover {
+  color: rgb(201, 66, 66);
+}
+.content {
+  background-color: white;
+  width: 60%;
+  height: 300px;
+  margin-bottom: 12em;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 60%;
+  height: 50px;
+  margin-bottom: 1px;
+}
+.action-button {
+  height: 50px;
+  width: 250px;
+  font-weight: 600;
+  border-radius: 15px;
+  color: white;
+  border: 0px;
+  background-color: brown;
+}
+
+.action-button:hover {
+  background-color: rgb(201, 66, 66);
+}
+.content-header {
+  font-weight: 800;
+  font-size: 20;
+  color: rgb(59, 58, 57);
+}
