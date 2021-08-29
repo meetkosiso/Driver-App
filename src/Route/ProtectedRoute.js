@@ -22,18 +22,19 @@ function ProtectedRoute({
   const initialized = async () => {
     if (isLoading === false && isAuthenticated === true) {
       // Request for Authentication token to EDRV
-      await onAccessTokenFetch({
-        grant_type: "client_credentials",
-        client_id: process.env.REACT_APP_EDRV_CLIENT_ID,
-        client_secret: process.env.REACT_APP_EDRV_CLIENT_SECRET,
-        audience: "https://api.edrv.io",
-      });
+      await onAccessTokenFetch(process.env.REACT_APP_ACCESS_TOKEN);
 
       const { email, sub, name } = user;
 
       // Get signed user detail from EDRV if none exist on store
       if (authUser.fetched === undefined) {
         await getUser(email);
+
+        return (
+          <div className="main-container">
+            <ClipLoader color="brown" loading={isLoading} size={100} />
+          </div>
+        );
       }
 
       // Check if user already exist, else create a new user on EDRV

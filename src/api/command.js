@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { edrvBase } from "../static";
 
-const command = {
+const commands = {
   getTransaction: () =>
     axios
       .get(`${edrvBase}/transactions`)
@@ -20,4 +20,4 @@ const command = {
       .catch((err) => new Error(err)),
 };
 
-export default command;
+export default commands;

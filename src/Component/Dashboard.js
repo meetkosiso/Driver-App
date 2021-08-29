@@ -20,7 +20,7 @@ function DashBoard({
 
   const [connector, setConnector] = useState("Processing...");
   const [chargestation, setChargestation] = useState("Processing...");
-  const [user, setUser] = useState("");
+  const [userID, setUserID] = useState("");
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
   const [online, setOnline] = useState("Processing...");
@@ -33,12 +33,12 @@ function DashBoard({
     onGetConnector();
     onGetChargeStation();
     onGetTransaction();
-    getUser();
+    onGetUser();
     getMetric();
   });
 
   const onGetConnector = async () => {
-    if (connectors.fetched === false || connectors.fetched === undefined) {
+    if (connectors.fetched === undefined) {
       await getConnector(process.env.REACT_APP_CONNECTOR);
     }
 
@@ -48,10 +48,7 @@ function DashBoard({
   };
 
   const onGetChargeStation = async () => {
-    if (
-      chargestations.fetched === false ||
-      chargestations.fetched === undefined
-    ) {
+    if (chargestations.fetched === undefined) {
       await getChargeStation(process.env.REACT_APP_CHARGE_STATIONS);
     }
 
@@ -74,11 +71,11 @@ function DashBoard({
     }
   };
 
-  const getUser = () => {
+  const onGetUser = () => {
     setLoading(true);
 
     if (authUser.data !== undefined && authUser.data._id !== undefined) {
-      setUser(authUser.data._id);
+      setUserID(authUser.data._id);
       setToken(authUser.data.tokens[0]);
 
       setLoading(false);
@@ -86,8 +83,8 @@ function DashBoard({
   };
 
   const onGetTransaction = async () => {
-    if (transaction.fetched === false || transaction.fetched === undefined) {
-      await getTransaction(user);
+    if (transaction.fetched === undefined) {
+      await getTransaction();
     }
   };
 
@@ -131,7 +128,7 @@ function DashBoard({
     const started = await remoteStart({
       chargestation: chargestationID,
       connector: connectorID,
-      user,
+      user: userID,
       token,
     }).catch((err) => err);
 
@@ -139,7 +136,7 @@ function DashBoard({
       // show success message to user
       alert.show("Remote start command was issued successfully");
       // get active transition
-      await getTransaction(user);
+      await getTransaction();
       await getConnector(process.env.REACT_APP_CONNECTOR);
 
       setLoading(false);
@@ -162,7 +159,7 @@ function DashBoard({
     setLoading(true);
     const stopped = await remoteStop({
       chargestation: chargestationID,
-      user,
+      user: userID,
       transaction: transaction.data._id,
     }).catch((err) => err);
 
@@ -170,7 +167,7 @@ function DashBoard({
       // show success message to user
       alert.show("Remote stop command was issued successfully");
       // get active transition
-      await getTransaction(user);
+      await getTransaction();
       await getConnector(process.env.REACT_APP_CONNECTOR);
 
       setLoading(false);

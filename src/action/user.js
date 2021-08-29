@@ -25,6 +25,7 @@ export const getUser = (email) => async (dispatch) => {
 
   if (usersFound instanceof Error) {
     dispatch(fetchUserFailed());
+    return;
   }
 
   const index = usersFound.findIndex((item) => item.email === email);
